@@ -1,0 +1,134 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Netflix Clone
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-black text-white">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-black bg-opacity-75 fixed w-full z-10">
+   <div class="flex items-center space-x-4">
+    <img alt="Netflix logo" class="h-8" height="50" src="https://storage.googleapis.com/a1aa/image/S9jm9RzN6I51H942wwif4Ie3c06wFy4bPxdeYXqExFUy58hnA.jpg" width="100"/>
+    <nav class="hidden md:flex space-x-4">
+     <a class="text-white hover:text-gray-400" href="#">
+      Home
+     </a>
+     <a class="text-white hover:text-gray-400" href="#">
+      TV Shows
+     </a>
+     <a class="text-white hover:text-gray-400" href="#">
+      Movies
+     </a>
+     <a class="text-white hover:text-gray-400" href="#">
+      New &amp; Popular
+     </a>
+     <a class="text-white hover:text-gray-400" href="#">
+      My List
+     </a>
+    </nav>
+   </div>
+   <div class="flex items-center space-x-4">
+    <i class="fas fa-search text-white">
+    </i>
+    <i class="fas fa-bell text-white">
+    </i>
+    <img alt="User profile picture" class="h-8 w-8 rounded-full" height="30" src="https://storage.googleapis.com/a1aa/image/wUHMUJUx3UoTGtG4mXgshzzcMyaeVIBC4AZiPMC87FJpOfwTA.jpg" width="30"/>
+   </div>
+  </header>
+  <!-- Main Content -->
+  <main class="pt-16">
+   <!-- Hero Section -->
+   <section class="relative h-screen bg-cover bg-center" style="background-image: url('https://placehold.co/1920x1080');">
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black">
+    </div>
+    <div class="absolute bottom-24 left-8 md:left-16">
+     <h1 class="text-4xl md:text-6xl font-bold">
+      Movie Title
+     </h1>
+     <p class="mt-4 text-lg md:text-xl max-w-lg">
+      A brief description of the movie goes here. It should be engaging and give a glimpse of the plot.
+     </p>
+     <div class="mt-4 flex space-x-4">
+      <button class="bg-white text-black px-4 py-2 rounded flex items-center space-x-2">
+       <i class="fas fa-play">
+       </i>
+       <span>
+        Play
+       </span>
+      </button>
+      <button class="bg-gray-700 bg-opacity-75 text-white px-4 py-2 rounded flex items-center space-x-2">
+       <i class="fas fa-info-circle">
+       </i>
+       <span>
+        More Info
+       </span>
+      </button>
+     </div>
+    </div>
+   </section>
+   <!-- Rows of Movies/Shows -->
+   <section class="px-8 md:px-16 py-8">
+    <h2 class="text-2xl font-bold mb-4">
+     Trending Now
+    </h2>
+    <div class="flex space-x-4 overflow-x-scroll scrollbar-hide">
+     <img alt="Trending movie 1" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/d0btqAaukF6UHlddDw7pCn0R00V2PgmA6OXgvQMmzOrRnP8E.jpg" width="300"/>
+     <img alt="Trending movie 2" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/DPF57oOe4CSpAiRNfeDQhmrbYZjp4CyXbiBYeIQcHOIfozHeE.jpg" width="300"/>
+     <img alt="Trending movie 3" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/lPQIqkjJV1YLOpm5LwXXjWJHv4c0zfMJiez4hTveK9Bfz5DPB.jpg" width="300"/>
+     <img alt="Trending movie 4" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/fJcTrAzAMDw3EyyYeaeoiu9IbIYXfJ60IzE0NmvwJfNTlzHeE.jpg" width="300"/>
+     <img alt="Trending movie 5" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/24rVFqtuWt67GhKqPqcobZzHxHg1qhfJcRGVfFeNDw7D68hnA.jpg" width="300"/>
+     <img alt="Trending movie 6" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/Qbf8WbZCn9TSB6euEDSlZuiASaqn7k8m7Fg99Tf5OOQ258hnA.jpg" width="300"/>
+     <img alt="Trending movie 7" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/PFNgimj6Wk7pHBrBL5twa2SHtGniBINLBPWLW1QyoZwTnP8E.jpg" width="300"/>
+     <img alt="Trending movie 8" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/d0aXiBLkfdRKCaxqwB6ih0kKEbJUclMhEda7BRWHCRtoOfwTA.jpg" width="300"/>
+     <img alt="Trending movie 9" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/598Ke1hPb3yVBiI4sfBa7pCvqeen1CqAI5e3oVpqH47AozHeE.jpg" width="300"/>
+     <img alt="Trending movie 10" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/TacOwgzTrgIlMNSG1rSWYKvyfGaa1ICfijjL1YgDwgaxcehnA.jpg" width="300"/>
+    </div>
+   </section>
+   <section class="px-8 md:px-16 py-8">
+    <h2 class="text-2xl font-bold mb-4">
+     Popular on Netflix
+    </h2>
+    <div class="flex space-x-4 overflow-x-scroll scrollbar-hide">
+     <img alt="Popular movie 1" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/puEIgA2V7ToqI1xxKVzbqiTycq9wP9gelIr1yHWTlKmbOfwTA.jpg" width="300"/>
+     <img alt="Popular movie 2" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/OL48lnpnv8YzCxHofSel4hT8iMvfTvp4VZyaf7SlNMTelzHeE.jpg" width="300"/>
+     <img alt="Popular movie 3" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/8ekOeAFyxot0Hk9mcoXqUHRN14WBQGIQXueRjl6LfW8iz5DPB.jpg" width="300"/>
+     <img alt="Popular movie 4" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/BoiZDo4tzUYNAhOVeFE0pT6TM5jHlieelLeMI3JfTgsnmzHeE.jpg" width="300"/>
+     <img alt="Popular movie 5" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/dp1L5EYzl9KwOVfmuixfHZV2C2xoGV8yPmuTfdr78BQu68hnA.jpg" width="300"/>
+     <img alt="Popular movie 6" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/VOjnTdvIVgrYG1hGsEsL256OsRqbnptLLlruxy9eeiqFdehnA.jpg" width="300"/>
+     <img alt="Popular movie 7" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/sME0YblfHLTNIaktHoOX5xrzQffuFUpJ32je1c8ywKTv05DPB.jpg" width="300"/>
+     <img alt="Popular movie 8" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/j9OFeD6W3114Iq2sCH4sFOO33M3Dq9KOuP9qycQi9VTWOfwTA.jpg" width="300"/>
+     <img alt="Popular movie 9" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/zQaeCFqv0BTex0HO7xemU4jfmjTq1DZkkVifJbzdMYWsmzHeE.jpg" width="300"/>
+     <img alt="Popular movie 10" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/V5iNFcSxuzZdOlj1DDNQitYa3PJpR5GnxpUObv3vk9lSnP8E.jpg" width="300"/>
+    </div>
+   </section>
+   <section class="px-8 md:px-16 py-8">
+    <h2 class="text-2xl font-bold mb-4">
+     New Releases
+    </h2>
+    <div class="flex space-x-4 overflow-x-scroll scrollbar-hide">
+     <img alt="New release 1" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/NnTFS4IFxN7dBleCPUeHlemMYT3GlFtmuJf8PnRpRb4Z15DPB.jpg" width="300"/>
+     <img alt="New release 2" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/KX6octBwNPb6M9DZ91LHQoJgEjTDjCHFCPWiFZeOscxkOfwTA.jpg" width="300"/>
+     <img alt="New release 3" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/q3cKWbp0eqUqFaoUCMtPz4eNXv5c81A9TenYj1gJDzw158hnA.jpg" width="300"/>
+     <img alt="New release 4" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/iWnUz79z39b3PJYUvKYRnfeg0PRuHBHVbgEQTMfofPEP15DPB.jpg" width="300"/>
+     <img alt="New release 5" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/xmDgtK5jDr5tJpjMjmqzHEbQDcD64UUj2bNAPVmBvbfmOfwTA.jpg" width="300"/>
+     <img alt="New release 6" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/FmbTwP1nIbpRL5AGGznwgsudVd9MutIW5JUajVJaclcLnP8E.jpg" width="300"/>
+     <img alt="New release 7" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/lWM13BEtEfTfFkRk4sm702HLbfRhES9Krr9JcC46aBxq68hnA.jpg" width="300"/>
+     <img alt="New release 8" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/y26iWQhfiwWmHaMDjTrDfrDLJnqg2KcxgH6Tcqe44jB758hnA.jpg" width="300"/>
+     <img alt="New release 9" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/68IbRCSpcL6bIBjpZ2fHCZycaQr2o2Lca3lai0byu6dZOfwTA.jpg" width="300"/>
+     <img alt="New release 10" class="w-64 h-40 object-cover rounded" height="200" src="https://storage.googleapis.com/a1aa/image/31LD5uYsbh5BPVq7Aft9fYfWvnmOnLjCqng9RYOor5RG68hnA.jpg" width="300"/>
+    </div>
+   </section>
+  </main>
+ </body>
+</html>
