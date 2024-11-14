@@ -44,7 +44,7 @@
             </nav>
         </div>
         <div class="flex items-center space-x-4">
-            <i class="fas fa-search text-white"></i>
+            <input type="text" id="searchInput" placeholder="Buscar..." class="px-4 py-2 rounded bg-gray-800 text-white" oninput="filterVideos()"/>
             <i class="fas fa-bell text-white"></i>
             <img alt="User  profile picture" class="h-8 w-8 rounded-full" height="30" src="https://media.discordapp.net/attachments/1266904187409530944/1306726533100212384/image.png?ex=6737b76b&is=673665eb&hm=346858e0c97d3c593b40c5f0fdd5645591961db2524bb121607cd82de5109e97&=&format=webp&quality=lossless&width=936&height=936" width="30"/>
         </div>
@@ -73,36 +73,37 @@
         <section class="px-8 md:px-16 py-8">
             <h2 class="text-2xl font-bold mb-4">Trending ahora</h2>
             <div class="flex space-x-4 overflow-x-scroll scrollbar-hide">
-                <img alt="Trending movie 1" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/Zj0KTY8-LqA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCRRMPCAnSwocjtTLeIORVjv-wFmA" width="300" onclick="openVideo('Zj0KTY8-LqA')"/>
-                <img alt="Trending movie 2" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/y_GwZZnFgI0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvob1fOd38MtSQHiIGvnulblHM5Q" width="300" onclick="openVideo('y_GwZZnFgI0')"/>
-                <img alt="Trending movie 3" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/uBLWyu1vvbg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC7tKNb5V48R11EKIKBjlUGzSJOIg" width="300" onclick="openVideo('uBLWyu1vvbg')"/>
-                <img alt="Trending movie 4" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/Nul92FM_ZJ4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLApTDQ8qk6h_maa6ccvKedUlsLodQ" width="300" onclick="openVideo('Nul92FM_ZJ4')"/>
-                <img alt="New release 10" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/0bCr3gE6OM0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB9l5-w_yr9Jh5NKslvdfniFL6asg" width="300" onclick="openVideo('0bCr3gE6OM0')"/>
+                <img alt="Trending movie 1" class="w-64 h-40 object-cover rounded" data-title="MiiTube Entire Rewind JuaneteMii" height="200" src="https://i.ytimg.com/vi/Zj0KTY8-LqA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCRRMPCAnSwocjtTLeIORVjv-wFmA" width="300" onclick="openVideo('Zj0KTY8-LqA')"/>
+                <img alt="Trending movie 2" class="w-64 h-40 object-cover rounded" data-title="El futuro del canal Nintendia25" height="200" src="https://i.ytimg.com/vi/y_GwZZnFgI0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvob1fOd38MtSQHiIGvnulblHM5Q" width="300" onclick="openVideo('y_GwZZ nFgI0')"/>
+                <img alt="Trending movie 3" class="w-64 h-40 object-cover rounded" data-title="El lugar casi eliminado Nintendia25" height="200" src="https://i.ytimg.com/vi/uBLWyu1vvbg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC7tKNb5V48R11EKIKBjlUGzSJOIg" width="300" onclick="openVideo('uBLWyu1vvbg')"/>
+                <img alt="Trending movie 4" class="w-64 h-40 object-cover rounded" data-title="Bing la nueva ia que podría destruir el mundo JuaneteMii" height="200" src="https://i.ytimg.com/vi/Nul92FM_ZJ4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLApTDQ8qk6h_maa6ccvKedUlsLodQ" width="300" onclick="openVideo('Nul92FM_ZJ4')"/>
+                <img alt="New release 10" class="w-64 h-40 object-cover rounded" data-title="Nunca había visto tanto talento got talent mii Curiosidades Nintenderas" height="200" src="https://i.ytimg.com/vi/0bCr3gE6OM0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB9l5-w_yr9Jh5NKslvdfniFL6asg" width="300" onclick="openVideo('0bCr3gE6OM0')"/>
             </div>
         </section>
         <section class="px-8 md:px-16 py-8">
             <h2 class="text-2xl font-bold mb-4">Popular en Miiflix</h2>
             <div class="flex space-x-4 overflow-x-scroll scrollbar-hide">
-                <img alt="Popular movie 2" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/lxW67dNK4Zw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBwviyUMMWaevGSrS-FAb7ZFYxyGg" width="300" onclick="openVideo('lxW67dNK4Zw')"/>
-                <img alt="Popular movie 3" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/s5N1ak-a5jE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBAMEeDoaAjXZXBDHdQKbsuFgW10w" width="300" onclick="openVideo('s5N1ak-a5jE')"/>
-                <img alt="Popular movie 4" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/Nul92FM_ZJ4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLApTDQ8qk6h_maa6ccvKedUlsLodQ" width="300" onclick="openVideo('Nul92FM_ZJ4')"/>
-                <img alt="Popular movie 5" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/ICe_dUzliz8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDKmiINfiKJjNkbSIVzMuajtSmi7w" width="300" onclick="openVideo('ICe_dUzliz8')"/>
-                <img alt="Popular movie 6" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/mUwvsg7vTBc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBRz1fzn6FZxjQ5GoB9jZ8JLKg2Vw" width="300" onclick="openVideo('mUwvsg7vTBc')"/>
-                <img alt="Popular movie 7" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/j11CMEyMDFs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAP14H3mn6QRQn7H6VJKmwPm2nzYQ" width="300" onclick="openVideo('j11CMEyMDFs')"/>
+                <img alt="Popular movie 2" class="w-64 h-40 object-cover rounded" data-title="Gran actualización Kaerutomo Nintendia25" height="200" src="https://i.ytimg.com/vi/lxW67dNK4Zw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBwviyUMMWaevGSrS-FAb7ZFYxyGg" width="300" onclick="openVideo('lxW67dNK4Zw')"/>
+                <img alt="Popular movie 3" class="w-64 h-40 object-cover rounded" data-title="Mii Home Wii ARG JuaneteMii" height="200" src="https://i.ytimg.com/vi/s5N1ak-a5jE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBAMEeDoaAjXZXBDHdQKbsuFgW10w" width="300" onclick="openVideo('s5N1ak-a5jE')"/>
+                <img alt="Popular movie 4" class="w-64 h-40 object-cover rounded" data-title="Bing la nueva IA que podría destruir el mundo JuaneteMii" height="200" src="https://i.ytimg.com/vi/Nul92FM_ZJ4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLApTDQ8qk6h_maa6ccvKedUlsLodQ" width="300" onclick="openVideo('Nul92FM_ZJ4')"/>
+                <img alt="Popular movie 5" class="w-64 h-40 object-cover rounded" data-title="Ranking de personalidades de Miitopia Curiosidades Nintenderas" height="200" src="https://i.ytimg.com/vi/ICe_dUzliz8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDKmiINfiKJjNkbSIVzMuajtSmi7w" width="300" onclick="openVideo('ICe_dUzliz ```html
+8')"/>
+                <img alt="Popular movie 6" class="w-64 h-40 object-cover rounded" data-title="El mejor juego de los mii de cada consola parte 2 Curiosidades Nintenderas" height="200" src="https://i.ytimg.com/vi/mUwvsg7vTBc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBRz1fzn6FZxjQ5GoB9jZ8JLKg2Vw" width="300" onclick="openVideo('mUwvsg7vTBc')"/>
+                <img alt="Popular movie 7" class="w-64 h-40 object-cover rounded" data-title="Todos son calvos Nintendia25" height="200" src="https://i.ytimg.com/vi/j11CMEyMDFs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAP14H3mn6QRQn7H6VJKmwPm2nzYQ" width="300" onclick="openVideo('j11CMEyMDFs')"/>
             </div>
         </section>
         <section class="px-8 md:px-16 py-8">
             <h2 class="text-2xl font-bold mb-4">MiiTube Originals</h2>
             <div class="flex space-x-4 overflow-x-scroll scrollbar-hide">
-                <img alt="New release 1" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/Zj0KTY8-LqA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCRRMPCAnSwocjtTLeIORVjv-wFmA" width="300" onclick="openVideo('Zj0KTY8-LqA')"/>
-                <img alt="New release 2" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/0mtiEUO1dLo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCfaPKNh_fAHJV9-gbp5wO-SsCm5w" width="300" onclick="openVideo('0mtiEUO1dLo')"/>
-                <img alt="New release 3" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/cf6HDuN6Z68/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBIcG8nvLjbAxGm7GIBG1qofmW1nA" width="300" onclick="openVideo('cf6HDuN6Z68')"/>
-                <img alt="New release 4" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/QotNr8L2SOc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC64E6N6WCaKAvrXNe4sCSX4jNU8Q" width="300" onclick="openVideo('QotNr8L2SOc')"/>
-                <img alt="New release 5" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/6C8bemUQ5mk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAKHLmOD93t_64UT7NmkZql1A_zsA" width="300" onclick="openVideo('6C8bemUQ5mk')"/>
-                <img alt="New release 7" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/PootZxHWhIQ/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFbyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARg8IB4ofzAP&rs=AOn4CLA9b2WxmOt2Hknh_FxKkOhKOLxOfg" width="300" onclick="openVideo('PootZxHWhIQ')"/>
-                <img alt="New release 8" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/yo7kZQmyM78/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBLeWuQhWI6ycAPDSlPinwoll9Hw" width="300" onclick="openVideo('yo7kZQmyM78')"/>
-                <img alt="New release 9" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/5TbaY6ii6Js/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCuNZNBt6rc79GUMbeQTV7SGeV-Cw" width="300" onclick="openVideo('5TbaY6ii6Js')"/>
-                <img alt="New release 10" class="w-64 h-40 object-cover rounded" height="200" src="https://i.ytimg.com/vi/0bCr3gE6OM0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB9l5-w_yr9Jh5NKslvdfniFL6asg" width="300" onclick="openVideo('0bCr3gE6OM0')"/>
+                <img alt="New release 1" class="w-64 h-40 object-cover rounded" data-title="MiiTube Entire Rewind JuaneteMii" height="200" src="https://i.ytimg.com/vi/Zj0KTY8-LqA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCRRMPCAnSwocjtTLeIORVjv-wFmA" width="300" onclick="openVideo('Zj0KTY8-LqA')"/>
+                <img alt="New release 2" class="w-64 h-40 object-cover rounded" data-title="MiiTube Rewind Hispano 2023 Curiosidades Nintenderas" height="200" src="https://i.ytimg.com/vi/0mtiEUO1dLo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCfaPKNh_fAHJV9-gbp5wO-SsCm5w" width="300" onclick="openVideo('0mtiEUO1dLo')"/>
+                <img alt="New release 3" class="w-64 h-40 object-cover rounded" data-title="Esto es MiiTube JuaneteMii Curiosidades Nintenderas" height="200" src="https://i.ytimg.com/vi/cf6HDuN6Z68/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBIcG8nvLjbAxGm7GIBG1qofmW1nA" width="300" onclick="openVideo('cf6HDuN6Z68')"/>
+                <img alt="New release 4" class="w-64 h-40 object-cover rounded" data-title="MiiTube Rewind Hispano 2022 Curiosidades Nintenderas" height="200" src="https://i.ytimg.com/vi/QotNr8L2SOc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC64E6N6WCaKAvrXNe4sCSX4jNU8Q" width="300" onclick="openVideo('QotNr8L2SOc')"/>
+                <img alt="New release 5" class="w-64 h-40 object-cover rounded" data-title="Windows 7 en 2022 JuaneteMii" height="200" src="https://i.ytimg.com/vi/6C8bemUQ5mk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAKHLmOD93t_64UT7NmkZql1A_zsA" width=" 300" onclick="openVideo('6C8bemUQ5mk')"/>
+                <img alt="New release 7" class="w-64 h-40 object-cover rounded" data-title="MiiTube App JuaneteMii" height="200" src="https://i.ytimg.com/vi/PootZxHWhIQ/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFbyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARg8IB4ofzAP&rs=AOn4CLA9b2WxmOt2Hknh_FxKkOhKOLxOfg" width="300" onclick="openVideo('PootZxHWhIQ')"/>
+                <img alt="New release 8" class="w-64 h-40 object-cover rounded" data-title="Es mi cumpleaños Curiosidades Nintenderas" height="200" src="https://i.ytimg.com/vi/yo7kZQmyM78/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBLeWuQhWI6ycAPDSlPinwoll9Hw" width="300" onclick="openVideo('yo7kZQmyM78')"/>
+                <img alt="New release 9" class="w-64 h-40 object-cover rounded" data-title="Miitopia fuera de contexto Curiosidades Nintenderas" height="200" src="https://i.ytimg.com/vi/5TbaY6ii6Js/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCuNZNBt6rc79GUMbeQTV7SGeV-Cw" width="300" onclick="openVideo('5TbaY6ii6Js')"/>
+                <img alt="New release 10" class="w-64 h-40 object-cover rounded" data-title="Got Talent Mii con Curiosidades Nintenderas" height="200" src="https://i.ytimg.com/vi/0bCr3gE6OM0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFbyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB9l5-w_yr9Jh5NKslvdfniFL6asg" width="300" onclick="openVideo('0bCr3gE6OM0')"/>
             </div>
         </section>
     </main>
@@ -123,6 +124,21 @@
             const videoPlayer = document.getElementById('videoPlayer');
             videoPlayer.src = '';
             videoContainer.style.display = 'none';
+        }
+
+        function filterVideos() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const videos = document.querySelectorAll('img[data-title]');
+
+            videos.forEach(video => {
+                const title = video.getAttribute('data-title').toLowerCase();
+                if (title.includes(filter)) {
+                    video.style.display = ''; // Muestra el video
+                } else {
+                    video.style.display = 'none'; // Oculta el video
+                }
+            });
         }
     </script>
 </body>
