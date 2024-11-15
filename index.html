@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Miiflix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .video-container, .description-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
+        .video-container iframe {
+            width: 80%;
+            height: 80%;
+        }
+        .description-box {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Header -->
+    <header class="flex items-center justify-between p-4 bg-black bg-opacity-75 fixed w-full z-10">
+        <div class="flex items-center space-x-4">
+            <img alt="Netflix logo" class="h-8" height="50" src="https://media.discordapp.net/attachments/1266904187409530944/1306724378846691418/951db2660dd916178323815ade4c1744.png?ex=6737b569&is=673663e9&hm=dde667aebeb59f4e29aba37d9df4d171e0498a4108bf415ae9f3c8d4053b66b2&=&format=webp&quality=lossless&width=414&height=170" width="100"/>
+            <nav class="hidden md:flex space-x-4">
+                <a class="text-white hover:text-gray-400" href="#">Inicio</a>
+                <a class="text-white hover:text-gray-400" href="#">Series</a>
+                <a class="text-white hover:text-gray-400" href="#">Películas</a>
+                <a class="text-white hover:text-gray-400" href="#">Nuevo</a>
+                <a class="text-white hover:text-gray-400" href="#">Mi Lista</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <input type="text" id="searchInput" placeholder="Buscar..." class="px-4 py-2 rounded bg-gray-800 text-white" oninput="filterVideos()"/>
+            <i class="fas fa-bell text-white"></i>
+            <img alt="User  profile picture" class="h-8 w-8 rounded-full" height="30" src="https://media.discordapp.net/attachments/1266904187409530944/1306726533100212384/image.png?ex=6737b76b&is=673665eb&hm=346858e0c97d3c593b40c5f0fdd5645591961db2524bb121607cd82de5109e97&=&format=webp&quality=lossless&width=936&height=936" width="30"/>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="pt-16" id="mainContent">
+        <!-- Sección de video aleatorio -->
+        <section class="relative min-h-screen bg-cover bg-center" id="randomVideoSection">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
+            <div class="absolute bottom-24 left-8 md:left-16" id="videoInfo">
+                <h1 class="text-4xl md:text-6xl font-bold" id="videoTitle">Título del Video</h1>
+                <p class="mt-4 text-lg md:text-xl max-w-lg" id="videoDescription">Descripción del Video</ p>
+                <div class="mt-4 flex space-x-4">
+                    <button id="playButton" class="bg-white text-black px-4 py-2 rounded flex items-center space-x-2">
+                        <i class="fas fa-play"></i>
+                        <span>Reproducir</span>
+                    </button>
+                    <button id="infoButton" class="bg-gray-700 bg-opacity-75 text-white px-4 py-2 rounded flex items-center space-x-2" onclick="showDescription()">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Más Información</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Resto de la sección de videos -->
+        <section class="px-8 md:px-16 py-8">
+            <h2 class="text-2xl font-bold mb-4">MiiTube Originals (Miiflix Beta 1)</h2>
+            <div id="video-container" class="flex space-x-4 overflow-x-scroll scrollbar-hide"></div>
+        </section>
+    </main>
+    <div class="video-container" id="videoContainer">
+        <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+        <button onclick="closeVideo()" class="absolute top-4 right-4 text-white">Cerrar</button>
+    </div>
+    <div class="description-container" id="descriptionContainer">
+        <div class="description-box">
+            <h2 class="text-xl font-bold" id="descriptionTitle">Descripción del Video</h2>
+            <a id="videoLink" href="#" target="_blank" class="font-bold text-blue-500">Ver en YouTube</a>
+            <p id="fullDescription">Aquí irá la descripción completa del video algún día. Cuando se arregle XD</p>
+            <button onclick="closeDescription()" class="mt-4 bg-red-600 text-white px-4 py-2 rounded">Cerrar</button>
+        </div>
+    </div>
+    <script>
+        function openVideo(videoId) {
+            const videoContainer = document.getElementById('videoContainer');
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            videoContainer.style.display = 'flex';
+        }
+
+        function closeVideo() {
+            const videoContainer = document.getElementById('videoContainer');
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = '';
+            videoContainer.style.display = 'none';
+        }
+
+        function showDescription() {
+            const descriptionContainer = document.getElementById('descriptionContainer');
+            const fullDescription = document.getElementById('fullDescription').innerText; // Obtiene la descripción completa
+            const title = document.getElementById('videoTitle').innerText;
+            const videoId = document.getElementById('videoPlayer').src.split('/').pop().split('?')[0]; // Obtiene el ID del video
+
+            document.getElementById('descriptionTitle').innerText = title;
+            document.getElementById('fullDescription').innerText = fullDescription; // Muestra la descripción completa
+            document.getElementById('videoLink').href = `https://www.youtube.com/watch?v=${videoId}`; // Establece el enlace al video original
+            descriptionContainer.style.display = 'flex';
+        }
+
+        function closeDescription() {
+            const descriptionContainer = document.getElementById('descriptionContainer');
+            descriptionContainer.style.display = 'none';
+        }
+
+        function filterVideos() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const videos = document.querySelectorAll('img[data-title]');
+
+            videos.forEach(video => {
+                const title = video.getAttribute('data-title').toLowerCase();
+                if (title.includes(filter)) {
+                    video.style.display = ''; // Muestra el video
+                } else {
+                    video.style.display = 'none'; // Oculta el video
+                }
+            });
+        }
+
+        const API_KEY = 'AIzaSyAedNRHPO98hGK5CgqWOceYWfcD7HoYAFY'; // Tu clave de API
+        const PLAYLIST_ID = 'PLeatuKwKpdCCSm1rxCnFJLwR5mcgop4ma'; // ID de tu lista de reproducción
+
+        async function fetchPlaylistVideos() {
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${PLAYLIST_ID}&key=${API_KEY}&maxResults=10`);
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud a la API');
+                }
+                const data = await response.json();
+                const videos = data.items;
+
+                const container = document.getElementById('video-container');
+                container.innerHTML = '';
+
+                videos.forEach(video => {
+                    const videoId = video.snippet.resourceId.videoId;
+                    const thumbnail = video.snippet.thumbnails.high.url;
+                    const title = video.snippet.title;
+                    const description = video.snippet.description; // Obtiene la descripción completa
+
+                    const videoElement = document.createElement('img');
+                    videoElement.alt = title;
+                    videoElement.src = thumbnail;
+                    videoElement.classList.add('w-64', 'h-40', 'object-cover', 'rounded', 'cursor-pointer');
+                    videoElement.onclick = () => {
+                        openVideo(videoId);
+                        document.getElementById('fullDescription').innerText = description; // Establece la descripción completa al abrir el video
+                    };
+                    videoElement.setAttribute('data-title', title); // Para la búsqueda
+                    container.appendChild(videoElement);
+                });
+            } catch (error) {
+                console.error('Error fetching videos:', error);
+            }
+        }
+
+        async function fetchRandomVideo() {
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${PLAYLIST_ID}&key=${API_KEY}&maxResults=50`);
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud a la API');
+                }
+                const data = await response.json();
+                const videos = data.items;
+
+                // Selecciona un video aleatorio
+                const randomIndex = Math.floor(Math.random() * videos.length);
+                const randomVideo = videos[randomIndex];
+
+                // Actualiza la sección principal con la información del video aleatorio
+                const videoId = randomVideo.snippet.resourceId.videoId;
+                const thumbnail = randomVideo.snippet.thumbnails.high.url;
+                const title = randomVideo.snippet.title;
+                const description = randomVideo.snippet.description;
+
+                // Actualiza el fondo y la información del video
+                const randomVideoSection = document.getElementById('randomVideoSection');
+                randomVideoSection.style.backgroundImage = `url('${thumbnail}')`;
+
+                document.getElementById('videoTitle').innerText = title;
+                document.getElementById('videoDescription').innerText = description.split(' ').slice(0, 15).join(' ') + '...'; // Muestra una descripción corta en la sección principal
+
+                // Configura el botón de reproducción
+                const playButton = document.getElementById('playButton');
+                playButton.onclick = () => openVideo(videoId);
+            } catch (error) {
+                console.error('Error fetching random video:', error);
+            }
+        }
+
+        // Llama a las funciones para obtener videos y un video aleatorio al cargar la página
+        fetchPlaylistVideos();
+        fetchRandomVideo();
+    </script>
+</body>
+</html>
