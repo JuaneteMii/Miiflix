@@ -62,7 +62,7 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
             <div class="absolute bottom-24 left-8 md:left-16" id="videoInfo">
                 <h1 class="text-4xl md:text-6xl font-bold" id="videoTitle">Título del Video</h1>
-                <p class="mt-4 text-lg md:text-xl max-w-lg" id="videoDescription">Descripción del Video</ p>
+                <p class="mt-4 text-lg md:text-xl max-w-lg" id="videoDescription">Descripción del Video</p>
                 <div class="mt-4 flex space-x-4">
                     <button id="playButton" class="bg-white text-black px-4 py-2 rounded flex items-center space-x-2">
                         <i class="fas fa-play"></i>
@@ -79,6 +79,16 @@
         <section class="px-8 md:px-16 py-8">
             <h2 class="text-2xl font-bold mb-4">MiiTube Originals (Miiflix Beta 1)</h2>
             <div id="video-container" class="flex space-x-4 overflow-x-scroll scrollbar-hide"></div>
+        </section>
+        <!-- Nueva sección para la primera lista de reproducción -->
+        <section class="px-8 md:px-16 py-8">
+            <h2 class="text-2xl font-bold mb-4">Novedades</h2>
+            <div id="playlist1-container" class="flex space-x-4 overflow-x-scroll scrollbar-hide"></div>
+        </section>
+        <!-- Nueva sección para la segunda lista de reproducción -->
+        <section class="px-8 md:px-16 py-8">
+            <h2 class="text-2xl font-bold mb-4">Destacados</h2>
+            <div id="playlist2-container" class="flex space-x-4 overflow-x-scroll scrollbar-hide"></div>
         </section>
     </main>
     <div class="video-container" id="videoContainer">
@@ -142,6 +152,8 @@
 
         const API_KEY = 'AIzaSyAedNRHPO98hGK5CgqWOceYWfcD7HoYAFY'; // Tu clave de API
         const PLAYLIST_ID = 'PLeatuKwKpdCCSm1rxCnFJLwR5mcgop4ma'; // ID de tu lista de reproducción
+        const PLAYLIST_1_ID = 'PLeFzVmO7SBJiRbyn7QgeTHG_2f38XS59j'; // ID de la primera nueva lista de reproducción
+        const PLAYLIST_2_ID = 'PLeFzVmO7SBJiFbmfoF7g4mA8zsDZLLZtu'; // ID de la segunda nueva lista de reproducción
 
         async function fetchPlaylistVideos() {
             try {
@@ -174,6 +186,74 @@
                 });
             } catch (error) {
                 console.error('Error fetching videos:', error);
+            }
+        }
+
+        async function fetchPlaylist1Videos() {
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${PLAYLIST_1_ID}&key=${API_KEY}&maxResults=10`);
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud a la API');
+                }
+                const data = await response.json();
+                const videos = data.items;
+
+                const container = document.getElementById('playlist1-container');
+                container.innerHTML = '';
+
+                videos.forEach(video => {
+                    const videoId = video.snippet.resourceId.videoId;
+                    const thumbnail = video.snippet.thumbnails.high.url;
+                    const title = video.snippet.title;
+                    const description = video.snippet.description;
+
+                    const videoElement = document.createElement('img');
+                    videoElement.alt = title;
+                    videoElement.src = thumbnail;
+                    videoElement.classList.add('w-64', 'h-40', 'object-cover', 'rounded', 'cursor-pointer');
+                    videoElement.onclick = () => {
+                        openVideo(videoId);
+                        document.getElementById('fullDescription').innerText = description;
+                    };
+                    videoElement.setAttribute('data-title', title);
+                    container.appendChild(videoElement);
+                });
+            } catch (error) {
+                console.error('Error fetching Playlist 1 videos:', error);
+            }
+        }
+
+        async function fetchPlaylist2Videos() {
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${PLAYLIST_2_ID}&key=${API_KEY}&maxResults=10`);
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud a la API');
+                }
+                const data = await response.json();
+                const videos = data.items;
+
+                const container = document.getElementById('playlist2-container');
+                container.innerHTML = '';
+
+                videos.forEach(video => {
+                    const videoId = video.snippet.resourceId.videoId;
+                    const thumbnail = video.snippet.thumbnails.high.url;
+                    const title = video.snippet.title;
+                    const description = video.snippet.description;
+
+                    const videoElement = document.createElement('img');
+                    videoElement.alt = title;
+                    videoElement.src = thumbnail;
+                    videoElement.classList.add('w-64', 'h-40', 'object-cover', 'rounded', 'cursor-pointer');
+                    videoElement.onclick = () => {
+                        openVideo(videoId);
+                        document.getElementById('fullDescription').innerText = description;
+                    };
+                    videoElement.setAttribute('data-title', title);
+                    container.appendChild(videoElement);
+                });
+            } catch (error) {
+                console.error('Error fetching Playlist 2 videos:', error);
             }
         }
 
@@ -213,6 +293,8 @@
 
         // Llama a las funciones para obtener videos y un video aleatorio al cargar la página
         fetchPlaylistVideos();
+        fetchPlaylist1Videos();
+        fetchPlaylist2Videos();
         fetchRandomVideo();
     </script>
 </body>
